@@ -1,0 +1,53 @@
+@import 'abstracts/variables';
+
+.comment_box {
+  display: flex;
+  flex-direction: column;
+  background-color: #f0f0f0;
+  padding: 5px;
+}
+
+.comment_row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.comment_avatar{
+
+}
+.comment_input_box {
+  flex: 1 1 auto;
+  margin: 0 5px;
+  padding: 2px;
+  border: 1px solid lightgrey;
+  border-radius: 2px;
+}
+
+.comment_text_box {
+  flex: 1 1 auto;
+  margin: 0 5px;
+  padding: 2px;
+  border-radius: 2px;
+  background-color: white;
+  color: black;
+}
+.comment_button button{
+  padding: 5px;
+  min-width: auto;
+}
+
+.app-comment__user-avatar {
+  width: 30px;
+  height: 30px;
+}
+.app-comment__user-avatar {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  margin-right: 5px;
+}
+.app-comment__user-avatar {
+  border-radius: 15% !important;
+}

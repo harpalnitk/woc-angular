@@ -1,0 +1,23 @@
+@import "abstracts/variables";
+form {
+  font-size: inherit;
+  font-family: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  p {
+    font-size: $fs-s;
+  }
+}
+
+.upload-progress-bar {
+  width: 50%;
+}
+
+.text-danger{
+  color:#dc3545!important;
+}
+
+.text-success{
+  color:#28a745!important;
+}

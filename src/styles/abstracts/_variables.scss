@@ -1,0 +1,53 @@
+/*
+
+COLORS:
+
+Light green: #7ed56f
+Medium green: #55c57a
+Dark green: #28b485
+
+*/
+
+$color-primary: #55c57a;
+$color-primary-light: #7ed56f;
+$color-primary-dark: #28b485;
+
+$color-secondary-light: #ffb900;
+$color-secondary-dark: #ff7730;
+
+$color-tertiary-light: #2998ff;
+$color-tertiary-dark: #5643fa;
+
+
+//$color-grey-light-1: #f0f0f0;
+//$color-grey-light-2: #b4b4b4;
+
+$color-grey-light-1: #f9f7f6;//body background
+$color-grey-light-2: #aaa;// anchor links hover and active
+
+$color-grey-dark-1: #54483A;
+$color-grey-dark-2: #6D5D4B;
+
+$color-grey-dark: #777;
+$color-white: #fff;
+$color-black: #000;
+
+$color-table-row-hover:#BBD8DC;
+$color-table-row-selected:#CFD8DC;
+
+//FONT
+// FONT VARIABLES
+$font-primary: 'Roboto', sans-serif;
+//$font-display: 'Josefin Sans', sans-serif;
+
+
+$fs-xs: .8rem;
+$fs-s: 1.2rem;
+$fs-d: 1.6rem;
+$fs-l: 2rem;
+
+//RESPONSIVE BREAKPOINTS
+$bp-largest: 75em; // 1200px/16 = 75em; 1em = 16px default for all browsers
+$bp-large: 62.5em; // 1000px/16 = 62.5em; 1em = 16px default for all browsers
+$bp-medium: 50em; // 800px/16 = 50em; 1em = 16px default for all browsers
+$bp-small: 37.5em; // 600px/16 = 37.5em; 1em = 16px default for all browsers

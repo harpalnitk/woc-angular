@@ -1,0 +1,41 @@
+@import "abstracts/variables";
+.mat-toolbar-row, .mat-toolbar-single-row {
+  height: 6vh;
+  min-height: 4.8rem;
+
+}
+  .header {
+    &__logo {
+
+      min-width: 10vw;
+      font-size: $fs-d;
+      transform: scale(1.2);
+      transform-origin: left;
+      margin-right: 1rem;
+    }
+
+    &__user-avatar {
+      width: 3.2rem;
+      //height: 3.2rem;
+      margin-right: 1rem;
+      border-radius: 50% ;
+    }
+    &__navigation-items {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: $fs-d;
+      small {
+        font-size: $fs-s;
+      }
+      &--start {
+        margin-right: auto;
+      }
+    }
+
+  }
+
+
+
+
+

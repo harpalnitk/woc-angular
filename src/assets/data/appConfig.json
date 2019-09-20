@@ -1,0 +1,25 @@
+{
+  "defaultUrl": "http://localhost:4200",
+  "topics"  : [
+    {"value": "1", "viewValue": "General"},
+    {"value": "2", "viewValue": "Books"},
+    {"value": "3", "viewValue": "Cooking"},
+    {"value": "4", "viewValue": "Education"},
+    {"value": "5", "viewValue": "Entertainment"},
+    {"value": "6", "viewValue": "Fashion"},
+    {"value": "7", "viewValue": "Health"},
+    {"value": "8", "viewValue": "Humanity"},
+    {"value": "9", "viewValue": "IT and Computers"},
+    {"value": "10", "viewValue": "Literature"},
+    {"value": "11", "viewValue": "Love"},
+    {"value": "12", "viewValue": "Management"},
+    {"value": "13", "viewValue": "Medical"},
+    {"value": "14", "viewValue": "Movies"},
+    {"value": "15", "viewValue": "Politics"},
+    {"value": "16", "viewValue": "Psychology"},
+    {"value": "17", "viewValue": "Religion"},
+    {"value": "18", "viewValue": "Science"},
+    {"value": "19", "viewValue": "Space"},
+    {"value": "20", "viewValue": "Sports"}
+  ]
+}

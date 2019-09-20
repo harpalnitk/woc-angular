@@ -1,0 +1,30 @@
+<div fxLayout="row">
+  <section fxFlexFill>
+    <h3 style="text-align: center" mat-dialog-title>Please submit you answer</h3>
+    <mat-divider></mat-divider>
+    <mat-dialog-content
+      fxLayout="column"
+      fxLayoutAlign="center center"
+      fxLayoutGap="10px"
+      [formGroup]="answerForm">
+      <mat-form-field style="flex-grow: 1;">
+      <textarea
+        matInput
+        placeholder="Your Answer"
+        formControlName="text"
+        cdkTextareaAutosize
+        cdkAutosizeMinRows="10"
+        cdkAutosizeMaxRows="20"
+        required
+        autocomplete="false"></textarea>
+        <mat-error *ngIf="!answerForm.get('text').valid && answerForm.get('text').touched">Please enter a valid answer</mat-error>
+      </mat-form-field>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <button class="mat-raised-button"(click)="close()">Close</button>
+      <button *ngIf="!isLoading"  class="mat-raised-button mat-primary" type="button" [disabled]="answerForm.invalid" (click)="onSubmit()">Submit</button>
+      <mat-spinner *ngIf="isLoading"></mat-spinner>
+    </mat-dialog-actions>
+  </section>
+</div>
+

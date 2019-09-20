@@ -1,0 +1,15 @@
+<form enctype="multipart/form-data" method="post">
+  <div>
+      <h4 class="heading-4">{{title}}</h4>
+      <input  hidden type="file" id="picked" #picked
+             (click)="message=''"
+             (change)="onPicked(picked)">
+
+    <button mat-raised-button color="accent" (click)="picked.click()">Upload</button>
+  </div>
+  <div *ngIf="progressValue" class="upload-progress-bar">
+    <mat-progress-bar mode="determinate" value="{{progressValue}}"></mat-progress-bar>
+    <h5>{{progressValue}}%</h5>
+  </div>
+  <p *ngIf="message" [ngClass]="currentClasses">{{message}}</p>
+</form>

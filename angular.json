@@ -23,8 +23,14 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/my-theme.scss",
+              "src/styles/main.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/styles"
+              ]
+            },
             "scripts": [],
             "es5BrowserSupport": true
           },
@@ -132,5 +138,10 @@
       }
     }
   },
-  "defaultProject": "basic-app-two"
+  "defaultProject": "basic-app-two",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }

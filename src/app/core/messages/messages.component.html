@@ -1,0 +1,8 @@
+<div class="messages" *ngIf="message">
+  <div [class]="errorMessageClass">
+    <mat-icon class="messages__close-icon" svgIcon="sprite:close" (click)="close()"></mat-icon>
+    <div class="messages__container">
+   {{message}}
+    </div>
+  </div>
+</div>

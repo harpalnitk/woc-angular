@@ -1,0 +1,50 @@
+<mat-card class="auth-card" fxLayout="row" fxFlex="100"
+          fxFlex.gt-xs="60" fxFlexOffset.gt-xs="20"
+          fxFlex.gt-sm="50" fxFlexOffset.gt-sm="25"
+          fxFlex.gt-md="40" fxFlexOffset.gt-md="30">
+  <section fxFlexFill>
+    <form
+      fxLayout="column"
+      fxLayoutAlign="center center"
+      fxLayoutGap="1rem"
+      [formGroup]="signUpForm"
+      (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <input
+          type="email"
+          matInput
+          placeholder="Your email"
+          formControlName="email"
+          email
+          required
+          autocomplete="false">
+        <mat-error *ngIf="email.pending">Checking Email Availability</mat-error>
+        <mat-error
+          *ngIf="(email.errors?.uniqueEmail === 'taken') && email.touched"
+        >Email already taken! Please enter a unique email.
+        </mat-error>
+        <mat-error *ngIf="signUpForm.get('email').hasError('required')">Field must not be empty</mat-error>
+        <mat-error *ngIf="!signUpForm.get('email').valid && signUpForm.get('email').touched && !email.errors?.uniqueEmail">E-mail is invalid</mat-error>
+        <mat-error *ngIf="email.errors?.uniqueEmail === 'error'">Error in checking Unique email.Please try later.</mat-error>
+      </mat-form-field>
+      <mat-form-field hintLabel="Should be at least 6 characters">
+        <input
+          type="password"
+          matInput
+          placeholder="Your password"
+          formControlName="password"
+          required
+          minlength="6"
+          autocomplete="false">
+        <!--<mat-hint align="end"> </mat-hint>-->
+        <mat-error>Has to be at least 6 characters long - {{signUpForm.get('password').value?.length}}/6 </mat-error>
+      </mat-form-field>
+      <mat-checkbox labelPosition="after" formControlName="agree" required color="primary">Agree to Terms and Conditions.</mat-checkbox>
+      <button *ngIf="!(isLoading$ | async)" type="submit" mat-raised-button color="primary" [disabled]="signUpForm.invalid">Submit</button>
+      <mat-spinner *ngIf="isLoading$ | async"></mat-spinner>
+    </form>
+  </section>
+</mat-card>
+
+
+

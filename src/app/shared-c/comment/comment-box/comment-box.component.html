@@ -1,0 +1,14 @@
+<mat-divider></mat-divider>
+<div class="comment_box font-size-small">
+  <div class="comment_row">
+    <div class="comment_avatar"><mat-icon color="primary"  class="app-comment__user-avatar">account_circle</mat-icon></div>
+    <div class="comment_input_box"><input matInput placeholder="Write your Comment" #input></div>
+    <div class="comment_button"><button mat-raised-button color="primary" class="font-size-small" (click)="post(input.value)">POST</button></div>
+  </div>
+  <div class="comment_row">
+    <div class="comment_avatar"><mat-icon color="primary"  class="app-comment__user-avatar">account_circle</mat-icon></div>
+    <div class="comment_text_box"><span><a href="">Harpal Singh</a> This is my comment. This is my commentThis is my commentThis is my commentThis is my comment</span></div>
+    <div class="comment_button">1 min ago</div>
+  </div>
+
+</div>

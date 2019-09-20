@@ -1,0 +1,28 @@
+
+
+<ng-container *ngIf="questions$ |async as questions">
+
+  <cdk-virtual-scroll-viewport class="questions__scroll--viewport" itemSize="250" minBufferPx="200" maxBufferPx="400"  (scrolledIndexChange)="nextBatch($event, questions.length)">
+<!--    <div style="position: relative; width: auto; margin: auto">-->
+      <mat-toolbar color="accent" class="mat-toolbar-selector">
+        <app-view-item-selector *ngIf="isAuth" class="mat-toolbar-selector--selector-1" (change)="viewItemChange($event)"></app-view-item-selector>
+        <app-sort-selector class="mat-toolbar-selector--selector-2" (change)="sortChange($event)"></app-sort-selector>
+        <app-topic-selector class="mat-toolbar-selector--selector-3" (change)="topicChange($event)"></app-topic-selector>
+      </mat-toolbar>
+      <mat-toolbar color="primary" class="mat-toolbar-secondary">
+        <mat-icon class="font-size-question"  svgIcon="sprite:help_outline"></mat-icon>
+        <div style="display: flex; flex-direction: column;">
+          <h6 class="font-size-question" >Top Questions</h6>
+          <small class="font-size-small">sorted by<span> {{sort_text}}</span></small>
+        </div>
+      </mat-toolbar>
+<!--    </div>-->
+
+
+
+  <app-question *cdkVirtualFor="let question of questions; let i = index; trackBy: trackByIdx" [question]="question" class="question-item"></app-question>
+
+
+  </cdk-virtual-scroll-viewport>
+</ng-container>
+

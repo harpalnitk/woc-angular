@@ -1,0 +1,161 @@
+<div class="edit-user-container mat-elevation-z8">
+  <h4 class="heading-4 heading-4--dark line-through-text edit-user-container__heading">EDIT PROFILE</h4>
+  <div class="edit-user-container__profile-image mat-elevation-z2">
+    <img mat-card-md-image [src]="getImageURL()" alt="{{user.alias}}">
+    <div><app-uploader
+      [title]="'Profile Image'"
+      (imagePath)='setImageURL($event)'
+    ></app-uploader></div>
+  </div>
+<!--  <mat-divider></mat-divider>-->
+<!--  <h4 class="heading-4 heading-4&#45;&#45;dark user-edit-container__email">-->
+<!--    Email: {{user.email}}-->
+<!--  </h4>-->
+<!--  <mat-divider></mat-divider>-->
+  <form
+    class="edit-user-container__form"
+    fxLayout="column"
+    fxLayoutAlign="center center"
+
+    [formGroup]="userEditForm"
+    (ngSubmit)="onSubmit()">
+      <mat-form-field >
+        <mat-label>Display Name</mat-label>
+        <input
+          type="text"
+          matInput
+          id="alias"
+          formControlName="alias"
+          required
+          minlength="5"
+          maxlength="40">
+        <mat-error>Has to be at least 5 characters long - {{userEditForm.get('alias').value?.length}}/5 </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input
+          type="password"
+          matInput
+          id="password"
+          formControlName="password"
+          required
+          minlength="5">
+        <mat-error>Has to be at least 5 characters long - {{userEditForm.get('alias').value?.length}}/5 </mat-error>
+      </mat-form-field>
+      <div class="edit-user-container__form--two-field">
+        <mat-form-field>
+          <mat-label>First Name</mat-label>
+          <input
+            type="text"
+            matInput
+            id="firstName"
+            formControlName="firstName"
+            maxlength="50">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Last Name</mat-label>
+          <input
+            type="text"
+            matInput
+            id="lastName"
+            formControlName="lastName"
+            maxlength="50">
+        </mat-form-field></div>
+      <div formGroupName="contact" class="edit-user-container__form--group">
+      <div formArrayName="phones">
+        <button
+          mat-stroked-button color="accent"
+          (click)="onAddPhone()" fxFlexAlign="end" type="button">Add Phone</button>
+        <div
+          *ngFor="let phoneCntrl of phones.controls; let i = index" fxLayout='row'>
+          <mat-form-field fxFlex="80">
+            <mat-label>Phone {{i+1}}: </mat-label>
+            <input
+              type="text"
+              matInput
+              [formControlName]="i"
+              required
+              maxlength="20">
+            <mat-error *ngIf="userEditForm.get('contact.phones')?.hasError('required',[i])">Phone number cannot be empty.</mat-error>
+            <mat-error>Must be numbers only.</mat-error>
+          </mat-form-field>
+          <div fxFlex="20">
+            <button
+              type="button"
+              mat-mini-fab color="warn"
+              (click)="onDeletePhone(i)">X</button>
+          </div>
+        </div>
+      </div>
+    </div>
+      <div formGroupName="address" class="edit-user-container__form--group">
+        <div formArrayName="lines">
+          <div
+            *ngFor="let linesCntrl of lines.controls; let i = index">
+            <mat-form-field  class="form-field-full-width">
+              <mat-label>Address Line {{i+1}}:</mat-label>
+              <input
+                type="text"
+                matInput
+                [formControlName]="i"
+                maxlength="50">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="edit-user-container__form--two-field">
+            <mat-form-field>
+              <mat-label>City</mat-label>
+              <input
+                matInput
+                type="text"
+                id="city"
+                formControlName="city"
+                maxlength="50"
+              >
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>State</mat-label>
+              <input
+                matInput
+                type="text"
+                id="state"
+                formControlName="state"
+                maxlength="50"
+              >
+            </mat-form-field>
+        </div>
+        <mat-form-field>
+          <mat-label>Zip</mat-label>
+          <input
+            matInput
+            type="text"
+            id="zip"
+            formControlName="zip"
+            maxlength="20"
+          >
+        </mat-form-field>
+      </div>
+      <mat-form-field>
+        <mat-label>Date of Birth</mat-label>
+        <input
+          matInput
+          type="date"
+          id="dob"
+          formControlName="dob"
+        >
+      </mat-form-field>
+    <div class="radio">
+      <small>Gender: </small>
+      <mat-radio-group  id="gender" formControlName="gender">
+        <mat-radio-button  class="gender-radio-button" *ngFor="let gender of genders" [value]="gender.value">
+          {{gender.viewValue}}
+        </mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <mat-spinner *ngIf="isLoading$ | async"></mat-spinner>
+  <div class="btn-action">
+      <button *ngIf="!(isLoading$ | async)" mat-raised-button color="accent" type="submit"  [disabled]="userEditForm.invalid">SAVE</button>
+    <button mat-raised-button color="warn" type="button" (click)="cancelProfile()">CANCEL</button>
+  </div>
+  </form>
+</div>

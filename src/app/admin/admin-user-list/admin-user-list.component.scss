@@ -1,0 +1,73 @@
+@import 'abstracts/variables';
+.app-table-container {
+
+}
+.search-form {
+  padding: 0 3rem;
+
+  mat-form-field{
+    width: 50%;
+  }
+}
+.btn--new-user{
+  margin: 1rem 3rem 0 3rem;
+}
+
+
+.app-table {
+  //position: relative;
+  max-height: 60vh;
+  overflow: auto;
+  table {
+    width:98%;
+    margin: 0 auto;
+
+}
+}
+
+.column {
+  padding:.5rem 1rem .5rem 0;
+  font-size: $fs-s;
+  &--xs {
+    width: 2rem;
+  }
+  &--s {
+    width: 5rem;
+  }
+  &--fixed {
+      word-wrap: break-word !important;
+      white-space: unset !important;
+      width: 15% !important;
+      overflow-wrap: break-word;
+      word-break: break-word;
+      hyphens: auto;
+  }
+}
+
+.app-loading-spinner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 5.6rem;
+  right: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.user-thumbnail {
+  width: 4rem !important;
+  height:4rem !important;
+  border-radius: 50% !important;
+  margin-right: 1rem;
+}
+
+.selected {
+  background-color: $color-table-row-selected;
+  color: $color-white;
+  &:hover {
+    background-color: $color-table-row-hover;
+  }
+}
+
+

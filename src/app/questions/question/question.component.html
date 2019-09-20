@@ -1,0 +1,53 @@
+<mat-card class="second-card" style="flex: 1 0 auto">
+
+    <div *ngIf="guest" class="font-size-avatar-text " style="display: flex; justify-content: space-between; align-items: center">
+        <div class="header-center">
+          <mat-icon color="primary" class="admin-user-icon" svgIcon="sprite:account_circle"></mat-icon>
+        <small>{{question.contact.name}}</small>
+        </div>
+      <span class="font-size-small">{{getViewDate()}}</span>
+    </div>
+    <div *ngIf="!guest" style="display: flex; justify-content: space-between; align-items: center">
+      <div *ngIf="!question.user?.avatar" class="font-size-avatar-text header-center">
+        <mat-icon color="primary" class="admin-user-icon" svgIcon="sprite:account_circle"></mat-icon>
+        <a [routerLink]="['/user', question.user._id]">
+            <small>{{question.contact.name}}</small>
+        </a>
+      </div>
+      <div *ngIf="question.user?.avatar" class="font-size-avatar-text">
+        <a [routerLink]="['/user', question.user._id]">
+          <span class="header-center"><img  class="app-sidebar__user-avatar" [src]="getImageUrl(question.user._id)" alt="{{question.user.alias}}">
+            <small>{{question.user.alias}}</small></span>
+        </a>
+      </div>
+      <div class="font-size-small">{{getViewDate()}}</div>
+    </div>
+
+  <mat-card-content>
+    <div class="q-cc-grid">
+      <button  class="q-cc-b" mat-stroked-button color="primary">{{question.topicViewValue}}</button>
+      <p class="q-cc-t">
+        {{question?.text}}
+      </p>
+      <span class="q-cc-v font-size-small"><a href="#">View Details...</a></span>
+    </div>
+  </mat-card-content>
+  <div class="q-cc-links font-size-small">
+    <span class="gutter" *ngIf="question.like_count">{{question.like_count}} Likes</span>
+    <span class="gutter" *ngIf="question.comment_count">{{question.comment_count}} Comments</span>
+    <span *ngIf="question?.answer_count?.count">{{question?.answer_count?.count}} Answers</span>
+    <span class="spacer"></span>
+    <span class="gutter" *ngIf="question.view_count">{{question.view_count}} Views</span>
+  </div>
+  <mat-divider></mat-divider>
+  <mat-card-actions class="actions">
+    <app-like [id]="question._id" [category]="'question'" (count)="incrementLikeCount($event)"></app-like>
+    <app-submit-answer [id]="question._id" (count)="incrementAnswerCount($event)"></app-submit-answer>
+    <app-comment (show)="toggleCommentBox()"></app-comment>
+    <button mat-button>SHARE</button>
+  </mat-card-actions>
+<app-comment-box *ngIf="showCommentBox" [id]="question._id" [category]="'question'"></app-comment-box>
+</mat-card>
+
+
+

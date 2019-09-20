@@ -1,0 +1,30 @@
+.mat-toolbar-secondary {
+  border-radius: .25rem!important;
+  max-height: 5rem!important;
+}
+
+.mat-toolbar-selector {
+  font-size: $fs-s;
+  border-radius: .25rem!important;
+  //max-height: 60rem!important;
+  display: grid!important;
+  grid-template-columns: repeat(auto-fit, minmax(max-content, 1fr));
+  grid-column-gap: .5rem;
+
+  &--selector-1 {
+    grid-column: 1 / span 1;
+    margin-right: auto;
+  }
+
+  &--selector-2 {
+    grid-column: 2 / span 1;
+  }
+
+  &--selector-3 {
+    grid-column: 3 / span 1;
+  }
+}
+
+.mat-toolbar-selector .mat-form-field{
+  display: inline;
+}

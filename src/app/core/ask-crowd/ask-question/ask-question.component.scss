@@ -1,0 +1,31 @@
+@import "abstracts/variables";
+.ask-question {
+  padding: 1rem;
+  position: relative;
+
+  &__form {
+    margin: 0 auto;
+    width: 80% !important;
+    display: flex;
+    flex-direction: column;
+    font-size: $fs-d;
+    mat-form-field {
+      width: 100%;
+    }
+    &--textarea {
+      flex: 1;// allow the textarea box to grow
+    }
+  }
+  &__btn {
+
+    display: flex;
+    justify-content: center;
+  }
+  &__close-icon{
+    position: absolute;
+    font-size: .5rem;
+    cursor:pointer;
+    top: -1rem;
+    right: -1rem;
+  }
+}

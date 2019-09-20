@@ -1,0 +1,42 @@
+<mat-card class="auth-card" fxLayout="row" fxFlex="100"
+          fxFlex.gt-xs="60" fxFlexOffset.gt-xs="20"
+          fxFlex.gt-sm="50" fxFlexOffset.gt-sm="25"
+          fxFlex.gt-md="40" fxFlexOffset.gt-md="30">
+  <section fxFlexFill>
+    <form
+      fxLayout="column"
+      fxLayoutAlign="center center"
+      fxLayoutGap="1rem"
+      [formGroup]="signInForm"
+      (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <input
+          type="email"
+          matInput
+          placeholder="Your email"
+          formControlName="email"
+          email
+          required
+          autocomplete="false">
+        <mat-error *ngIf="signInForm.get('email').hasError('required')">Field must not be empty</mat-error>
+        <mat-error *ngIf="!signInForm.get('email').valid && signInForm.get('email').touched">E-mail is invalid</mat-error>
+      </mat-form-field>
+      <mat-form-field hintLabel="Should be at least 6 characters">
+        <input
+          type="password"
+          matInput
+          placeholder="Your password"
+          formControlName="password"
+          required
+          minlength="6"
+          autocomplete="false">
+        <mat-error>Has to be at least 6 characters long - {{signInForm.get('password').value?.length}}/6 </mat-error>
+      </mat-form-field>
+      <button *ngIf="!(isLoading$ | async)" type="submit" mat-raised-button color="primary" [disabled]="signInForm.invalid">Submit</button>
+      <mat-spinner *ngIf="isLoading$ | async"></mat-spinner>
+    </form>
+  </section>
+</mat-card>
+
+
+

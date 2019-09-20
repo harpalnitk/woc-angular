@@ -1,0 +1,10 @@
+<div class="main-card" fxFlex="100" fxFlex.gt-md="80" fxFlexOffset.gt-md="10">
+  <h3 class="heading-3 heading-3--dark mb-1">User Profile</h3>
+  <div [@routeAnimation]="getAnimationData(routerOutlet)">
+    <router-outlet #routerOutlet="outlet"></router-outlet>
+  </div>
+<!--  <app-user-detail *ngIf="user && !(editMode$ | async)" [user]="user"></app-user-detail>-->
+<!--  <app-user-edit *ngIf="user && (editMode$ | async)" [user]="user"></app-user-edit>-->
+</div>
+
+

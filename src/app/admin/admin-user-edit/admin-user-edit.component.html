@@ -1,0 +1,118 @@
+<div class="edit-user-container mat-elevation-z8">
+  <h4 class="heading-4 heading-4--dark line-through-text edit-user-container__heading">{{editMode ? 'EDIT USER' : 'ADD USER'}}</h4>
+  <div *ngIf="editMode" class="edit-user-container__profile-image mat-elevation-z2">
+    <img *ngIf="getImageURL()" mat-card-md-image  [src]="getImageURL()" alt="user_image">
+    <div><app-uploader
+      [title]="'Profile Image'"
+      [id]="id"
+      (imagePath)='setImageURL($event)'
+    ></app-uploader></div>
+  </div>
+
+  <form
+    class="edit-user-container__form"
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    [formGroup]="userEditForm"
+    (ngSubmit)="onSubmit()"
+    *ngIf="!editMode || (user$ | async); else loading">
+      <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input
+      type="text"
+      matInput
+      formControlName="email"
+      [readonly]="editMode"
+      required
+      >
+        <mat-error *ngIf="email.pending">Checking Email Availability</mat-error>
+        <mat-error
+          *ngIf="(email.errors?.uniqueEmail === 'taken') && email.touched"
+        >Email already taken! Please enter a unique email.
+        </mat-error>
+        <mat-error *ngIf="userEditForm.get('email').hasError('required')">Field must not be empty</mat-error>
+        <mat-error *ngIf="!userEditForm.get('email').valid && userEditForm.get('email').touched && !email.errors?.uniqueEmail">E-mail is invalid</mat-error>
+        <mat-error *ngIf="email.errors?.uniqueEmail === 'error'">Error in checking Unique email.Please try later.</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Display Name</mat-label>
+        <input
+          type="text"
+          matInput
+          id="alias"
+          formControlName="alias"
+          required
+          minlength="5"
+          maxlength="40">
+        <mat-error>Has to be at least 5 characters long - {{userEditForm.get('alias').value?.length}}/5 </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input
+          type="password"
+          matInput
+          id="password"
+          formControlName="password"
+          required
+          minlength="5">
+        <mat-error>Has to be at least 5 characters long - {{userEditForm.get('alias').value?.length}}/5 </mat-error>
+      </mat-form-field>
+      <div class="edit-user-container__form--two-field">
+        <mat-form-field>
+          <mat-label>First Name</mat-label>
+          <input
+            type="text"
+            matInput
+            id="firstName"
+            formControlName="firstName"
+            maxlength="50">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Last Name</mat-label>
+          <input
+            type="text"
+            matInput
+            id="lastName"
+            formControlName="lastName"
+            maxlength="50">
+        </mat-form-field>
+      </div>
+      <mat-form-field>
+        <mat-label>Roles</mat-label>
+
+          <mat-select formControlName="roles" multiple required>
+          <mat-option *ngFor="let role of roles" [value]="role.value">
+            {{ role.viewValue}}
+          </mat-option>
+            </mat-select>
+        <mat-error>Please select user roles</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>User Type</mat-label>
+
+        <mat-select formControlName="userType" required>
+          <mat-option *ngFor="let type of userTypes" [value]="type.value">
+            {{ type.viewValue}}
+          </mat-option>
+        </mat-select>
+        <mat-error>Please select user type</mat-error>
+      </mat-form-field>
+      <div class="radio">
+        <small>User Status:</small>
+        <mat-radio-group  id="status" formControlName="status" required>
+          <mat-radio-button  class="status-radio-button" *ngFor="let status of userStatus" [value]="status.value">
+            {{status.viewValue}}
+          </mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+    <mat-spinner *ngIf="isLoading$ | async"></mat-spinner>
+    <div class="btn-action">
+      <button *ngIf="!(isLoading$ | async)" mat-raised-button color="accent" type="submit"  [disabled]="userEditForm.invalid">{{editMode? 'EDIT' : 'ADD'}}</button>
+      <button mat-raised-button color="warn" type="button" (click)="onCancel()">CANCEL</button>
+    </div>
+  </form>
+  <ng-template #loading>
+    Loading User...
+  </ng-template>
+</div>

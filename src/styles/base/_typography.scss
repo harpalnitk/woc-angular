@@ -1,0 +1,126 @@
+%heading {
+  font-family: $font-primary;
+  font-weight: 400;
+}
+
+.heading-1 {
+  @extend %heading; // this line appends .heading-1 to above declaration of %heading.this does not include the code here.it is other way around
+  font-size: 4.5rem;
+  &--light {
+    color: $color-grey-light-1;
+  }
+  &--dark {
+    color: $color-grey-dark-1;
+  }
+  line-height: 1;
+}
+
+.heading-2 {
+  @extend %heading;
+  font-size: 3rem;
+  line-height: 1;
+
+  &--light {
+    color: $color-grey-light-1;
+  }
+
+  &--dark {
+    color: $color-grey-dark-1;
+  }
+
+}
+
+.heading-3 {
+  @extend %heading;
+  font-size: 2.5rem;
+  &--light {
+    color: $color-grey-light-1;
+  }
+
+  &--dark {
+    color: $color-grey-dark-1;
+  }
+  text-transform: uppercase;
+
+}
+
+.heading-4 {
+  @extend %heading;
+  font-size: 1.5rem;
+
+
+  &--light {
+    color: $color-grey-light-1;
+  }
+
+  &--dark {
+    color: $color-grey-dark-1;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*FONT SIZES*/
+.font-size-extra-small {
+  font-size: .8rem;
+}
+
+.font-size-small {
+  font-size: 1.2rem !important;
+  line-height: 1.2rem !important;
+}
+.font-size-medium {
+  font-size: 1.5rem !important;
+  //line-height: 1.5rem !important;
+}
+
+.font-size-icon {
+  font-size: 2rem !important;
+  height: 2rem !important;
+  width: 2rem !important;
+  margin-right: .5rem;
+}
+
+.font-size-avatar-text {
+  font-size: 2rem !important;
+}
+
+.font-size-icon-button {
+  font-size: 1.1rem !important;
+}
+
+

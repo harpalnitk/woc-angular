@@ -1,0 +1,31 @@
+<mat-nav-list>
+  <a *ngIf="!isAuth" mat-list-item routerLink="/signup" (click)="onClose()">
+    <mat-icon svgIcon="sprite:face"></mat-icon>
+    <span class="sidebar__nav-caption">SignUp</span>
+  </a>
+  <a *ngIf="!isAuth" mat-list-item routerLink="/signin" (click)="onClose()">
+    <mat-icon svgIcon="sprite:input"></mat-icon>
+    <span class="sidebar__nav-caption">SignIn</span>
+  </a>
+  <a *ngIf="isAuth" mat-list-item [routerLink]="['/user', 'me']" (click)="onClose()">
+    <mat-icon svgIcon="sprite:account_circle"></mat-icon>
+    <span class="sidebar__nav-caption">Profile</span>
+  </a>
+  <mat-list-item *ngIf="isAuth">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon svgIcon="sprite:power_settings_new"></mat-icon>
+      <span class="sidebar__nav-caption">Signout</span>
+    </button>
+  </mat-list-item>
+</mat-nav-list>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item (click)="onSignOut()">
+    <mat-icon svgIcon="sprite:eject"></mat-icon>
+    <span>Sign Out (This Device)</span>
+  </button>
+  <button mat-menu-item (click)="onSignOutAll()">
+    <mat-icon svgIcon="sprite:all_out"></mat-icon>
+    <span>Sign Out (All Devices)</span>
+  </button>
+</mat-menu>

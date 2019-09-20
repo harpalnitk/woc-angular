@@ -1,0 +1,24 @@
+@import "abstracts/variables";
+.user-profile {
+  font-family: inherit !important;
+  font-size: $fs-d  !important;
+  margin: 0 auto;
+  width: 60% !important;
+  @media only screen and (max-width: $bp-largest) {
+    width: 60% !important;
+  }
+  @media only screen and (max-width: $bp-medium) {
+    width: 70% !important;
+  }
+  @media only screen and (max-width: $bp-large) {
+    width: 80% !important;
+  }
+  @media only screen and (max-width: $bp-small) {
+    width: 100% !important;
+  }
+  &__image {
+    padding-right: 1rem;
+  }
+}
+
+

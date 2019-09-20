@@ -1,0 +1,74 @@
+<div class="ask-question">
+  <mat-icon class="ask-question__close-icon" svgIcon="sprite:close" (click)="close()"></mat-icon>
+  <h4 class="heading-4 heading-4--dark line-through-text mb-2">Ask Question</h4>
+  <form
+    class="ask-question__form"
+    [formGroup]="askQuestionForm"
+    (ngSubmit)="onSubmit()">
+
+    <mat-form-field class="ask-question__form--textarea">
+      <textarea
+        matInput
+        placeholder="Your Question"
+        formControlName="text"
+        cdkTextareaAutosize
+        cdkAutosizeMinRows="2"
+        cdkAutosizeMaxRows="10"
+        required
+        autocomplete="false"></textarea>
+      <mat-error *ngIf="!askQuestionForm.get('text').valid && askQuestionForm.get('text').touched">Please enter a valid question</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Category</mat-label>
+      <mat-select formControlName="topic" required>
+        <mat-option value="0" disabled="true">-- Please select category --</mat-option>
+        <mat-option *ngFor="let topic of topics" [value]="topic.value">
+          {{ topic.viewValue}}
+        </mat-option>
+      </mat-select>
+      <mat-error>Please select question category</mat-error>
+    </mat-form-field>
+    <div formGroupName="contact" fxLayout="column"
+         fxLayoutAlign="center center">
+      <mat-form-field>
+        <input
+          type="text"
+          matInput
+          placeholder="Name"
+          formControlName="name"
+          required
+          autocomplete="false"
+          [readonly]="hasName">
+        <mat-error *ngIf="!askQuestionForm.get('contact.name').valid && askQuestionForm.get('contact.name').touched">Please enter your name</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          type="email"
+          matInput
+          placeholder="Your email"
+          formControlName="email"
+          email
+          autocomplete="false"
+          [readonly]="isAuth">
+        <mat-error *ngIf="!askQuestionForm.get('contact.email').valid && askQuestionForm.get('contact.email').touched">E-mail is invalid</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          type="text"
+          matInput
+          placeholder="Phone"
+          formControlName="phone"
+          autocomplete="false">
+        <mat-error *ngIf="!askQuestionForm.get('contact.phone').valid && askQuestionForm.get('contact.phone').touched">Please enter a valid phone number!</mat-error>
+      </mat-form-field>
+      <mat-error *ngIf="askQuestionForm.errors?.phoneOrEmail && (askQuestionForm.touched || askQuestionForm.dirty)">
+        Please provide either phone or email.
+      </mat-error>
+    </div>
+<div class="ask-question__btn">
+  <button  *ngIf="!isLoading" type="submit" mat-raised-button color="primary" [disabled]="askQuestionForm.invalid">Submit</button>
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+</div>
+
+  </form>
+</div>
